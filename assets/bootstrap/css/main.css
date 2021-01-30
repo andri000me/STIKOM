@@ -1,0 +1,367 @@
+/********************************************************************
+	PENGATURAN
+********************************************************************/
+body {
+    /* font-family: 'Roboto', sans-serif; */
+	font-family: 'Times New Roman';
+}
+.capitalize {
+	text-transform:capitalize;
+}
+.uppercase {
+	text-transform:uppercase;
+}
+.lowercase {
+	text-transform:lowercase;
+}
+.line-through {
+	 text-decoration: line-through;
+}
+b {
+	color:#444;
+}
+.nodecoration {
+	text-decoration:none;
+}
+.underline {
+	text-decoration:underline;
+}
+.scroll-y {
+	overflow-y:scroll;
+	height:360px;
+}
+.nopad {
+	padding:0px;
+}
+.pad5 {
+	padding:5px;
+}
+.pad10 {
+	padding:10px;
+}
+.padtop5 {
+	padding-top:5px;
+}
+.padtop10 {
+	padding-top:10px;
+}
+.padtop15 {
+	padding-top:15px;
+}
+.padtop20 {
+	padding-top:20px;
+}
+.padbot5 {
+	padding-bottom:5px;
+}
+.padbot10 {
+	padding-bottom:10px;
+}
+.padbot15 {
+	padding-bottom:15px;
+}
+.padbot20 {
+	padding-bottom:20px;
+}
+.padleft5 {
+	padding-left:5px;
+}
+.padleft10 {
+	padding-left:10px;
+}
+.padleft15 {
+	padding-left:15px;
+}
+.padleft20 {
+	padding-left:20px;
+}
+.padright5 {
+	padding-right:5px;
+}
+.padright10 {
+	padding-right:10px;
+}
+.padright15 {
+	padding-right:15px;
+}
+.padright20 {
+	padding-right:20px;
+}
+.nomar {
+	margin:0px;
+}
+.mar5 {
+	margin:5px;
+}
+.mar10 {
+	margin:10px;
+}
+.martop5 {
+	margin-top:5px;
+}
+.martop10 {
+	margin-top:10px;
+}
+.martop15 {
+	margin-top:15px;
+}
+.martop20 {
+	margin-top:20px;
+}
+.marbot5 {
+	margin-bottom:5px;
+}
+.marbot10 {
+	margin-bottom:10px;
+}
+.marbot15 {
+	margin-bottom:15px;
+}
+.marbot20 {
+	margin-bottom:20px;
+}
+.marleft5 {
+	margin-left:5px;
+}
+.marleft10 {
+	margin-left:10px;
+}
+.marleft15 {
+	margin-left:15px;
+}
+.marleft20 {
+	margin-left:20px;
+}
+.marright5 {
+	margin-right:5px;
+}
+.marright10 {
+	margin-right:10px;
+}
+.marright15 {
+	margin-right:15px;
+}
+.marright20 {
+	margin-right:20px;
+}
+.nobor {
+	border:0px;
+}
+.bor1 {
+	border:1px solid #ddd;
+}
+.bortop1 {
+	border-top:1px solid #ddd;
+}
+.borbot1 {
+	border-bottom:1px solid #ddd;
+}
+.borleft1 {
+	border-left:1px solid #ddd;
+}
+.borright1 {
+	border-right:1px solid #ddd;
+}
+.norad {
+	border-radius:0px;
+}
+.rad1 {
+	border-radius:1px;
+}
+.rad2 {
+	border-radius:2px;
+}
+.rad3 {
+	border-radius:3px;
+}
+.rad4 {
+	border-radius:4px;
+}
+.rad5 {
+	border-radius:5px;
+}
+.textwhite {
+	color:#fff;
+}
+.textblack {
+	color:#444;
+}
+
+.table-bor > thead > tr > th,
+.table-bor > tbody > tr > th,
+.table-bor > tfoot > tr > th,
+.table-bor > thead > tr > td,
+.table-bor > tbody > tr > td,
+.table-bor > tfoot > tr > td {
+  padding: 8px;
+  line-height: 1.42857143;
+  vertical-align: middle;
+  border-top: 1px solid #ddd;
+  font-size:13px;
+  font-weight:normal;
+}
+.table-border tr{
+	vertical-align:middle;
+	border: 1px solid #ddd !important;
+}
+.panel {
+	font-size:13px;
+}
+.table-nobor {
+	font-size:10px;
+}
+.table-nobor > thead > tr > th,
+.table-nobor > tbody > tr > th,
+.table-nobor > tfoot > tr > th,
+.table-nobor > thead > tr > td,
+.table-nobor > tbody > tr > td,
+.table-nobor > tfoot > tr > td {
+  padding: 2px;
+  line-height: 1.42857143;
+  vertical-align: middle;
+  border-top: 0px solid #ddd;
+  font-weight:normal;
+}
+/********************************************************************
+	REPORT
+********************************************************************/
+hr.hr-report {
+	border:1px solid #000;
+	margin-top:0px;
+}
+.tittle-report {
+	text-transform:uppercase;
+	font-family: 'Roboto', sans-serif;
+}
+.tittle-report h4 {
+	text-align:center;
+}
+.report-page {
+	background:#fff;
+	font-family: 'Roboto', sans-serif;
+	font-size:12px;
+}
+.table-bordered-dom > thead > tr > th,
+.table-bordered-dom > tbody > tr > th,
+.table-bordered-dom > tfoot > tr > th,
+.table-bordered-dom > thead > tr > td,
+.table-bordered-dom > tbody > tr > td,
+.table-bordered-dom > tfoot > tr > td {
+  border: 0.5px solid #000;
+  font-size:11px;
+  padding: 5px;
+}
+.table-bordered-dom > thead > tr > th,
+.table-bordered-dom > thead > tr > td {
+  border-bottom-width: 0px;
+}
+.tdt {
+	font-size:13px;
+}
+.colums {
+	width:33.33333333%;
+	padding-right: 15px;
+	padding-left: 15px;
+}
+.justify-content-center {
+	display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-pack: center !important;
+      justify-content: center !important;
+}
+.border-kop{
+	border-bottom:3px solid #000;
+	margin-bottom:10px;
+}
+center.kop-absen {
+	font-weight:bold;
+}
+center.kop-absen p {
+	font-weight:bold;
+	line-height:10px;
+}
+center.kop-absen > span {
+	font-size:16px;
+}
+.border-kop > img.logo-kop-pt {
+	height:85px; 
+	width:87px; 
+	margin-bottom:-7.8%;
+}
+.border-kop > img.logo-kop-ls {
+	height:85px; 
+	width:87px; 
+	margin-bottom:-11.4%;
+	margin-left:165px;
+}
+.table-nobor {
+	font-size:10px;
+}
+.table-nobor-monev > thead > tr > th,
+.table-nobor-monev > tbody > tr > th,
+.table-nobor-monev > tfoot > tr > th,
+.table-nobor-monev > thead > tr > td,
+.table-nobor-monev > tbody > tr > td,
+.table-nobor-monev > tfoot > tr > td {
+  padding: 0px;
+  vertical-align: middle;
+  border-top: 0px solid #ddd;
+  font-size:12px;
+}
+.table-nobor-monev > thead > tr > th,
+.table-nobor-monev > tbody > tr > th,
+.table-nobor-monev > tfoot > tr > th{
+	font-weight:bold;
+}
+.table-nobor-monev-km > thead > tr > th,
+.table-nobor-monev-km > tbody > tr > th,
+.table-nobor-monev-km > tfoot > tr > th,
+.table-nobor-monev-km > thead > tr > td,
+.table-nobor-monev-km > tbody > tr > td,
+.table-nobor-monev-km > tfoot > tr > td {
+  padding: 0px;
+  vertical-align: middle;
+  border-top: 0px solid #ddd;
+  font-size:11px;
+}
+.table-nobor-monev-km > thead > tr > th,
+.table-nobor-monev-km > tbody > tr > th,
+.table-nobor-monev-km > tfoot > tr > th{
+	font-weight:bold;
+}
+.table-bordered-dom-monev > thead > tr > th,
+.table-bordered-dom-monev > tbody > tr > th,
+.table-bordered-dom-monev > tfoot > tr > th,
+.table-bordered-dom-monev > thead > tr > td,
+.table-bordered-dom-monev > tbody > tr > td,
+.table-bordered-dom-monev > tfoot > tr > td {
+  border: 0.5px solid #000;
+  font-size:12px;
+  padding: 5px;
+  vertical-align: middle;
+}
+.table-bordered-dom-monev > thead > tr > th,
+.table-bordered-dom-monev > tbody > tr > th,
+.table-bordered-dom-monev > tfoot > tr > th{
+	text-align:center;
+	font-weight:bold;
+}
+.table-bordered-dom > thead > tr > th,
+.table-bordered-dom > thead > tr > td {
+	border-bottom-width: 0px;
+	 /* height:50px; */
+}
+.tfoot-ket {
+	font-size:11px;
+}
+.row-dom {
+	position: relative;
+	padding-right: 200px;
+	padding-left: 200px;
+}
+.colums-50 {
+	position: relative;
+	width:50%;
+}

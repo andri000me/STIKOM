@@ -1,0 +1,113 @@
+<?php
+
+	if(isset($_POST['simpan_tahan'])):
+		$_SESSION['tahan']=$_POST;
+	endif;
+
+	if(isset($_SESSION['tahan'])):
+		$nim              = $_SESSION['tahan']['nim'];
+		$no_tlp_mahasiswa = $_SESSION['tahan']['no_tlp_mahasiswa'];
+		$password	   	  = $_SESSION['tahan']['password']; 
+	endif;
+
+?>
+<!-- Form with validation -->
+				
+<div class="panel panel-body login-form">
+	<div class="text-center">
+		<img src="setting/save/logo/logo.png" style="height:100px; width:100px;">
+		<h5 class="content-group"><span class="text-thin">Daftar Menjadi</span> Peserta KKN <small class="display-block text-thin">Stikom Uyelindo</small></h5>
+	</div>
+	<div class="tab-content" id="myTabContent">
+	<div class="tab-pane fade <?=((isset($_SESSION['tahan']))?'':'in active');?>">
+	<form class="form-validate" method="post" >
+	<div class="content-divider text-muted form-group"><span>Profil</span></div>
+	
+	<div class="form-group has-feedback has-feedback-left">
+		<input type="number" class="form-control" onfocus="cek_regis()" onkeyup="cek_regis()" id="nim" placeholder="Masukan NIM" name="nim" required="required">
+		<div class="form-control-feedback">
+			<i class="fa fa-id-card text-muted"></i>
+		</div>
+	</div>
+	
+	<div class="form-group has-feedback has-feedback-left">
+		<input disabled type="text" class="form-control" id="nama_mahasiswa" placeholder="Nama Lengkap Mahasiswa" name="nama_mahasiswa" required="required">
+		<div class="form-control-feedback">
+			<i class="fa fa-id-card-o text-muted"></i>
+		</div>
+	</div>
+	
+	<div class="form-group has-feedback has-feedback-left">
+		<input disabled type="text" class="form-control" id="nama_prodi" placeholder="Program Studi" name="nama_prodi" required="required">
+		<div class="form-control-feedback">
+			<i class="fa fa-id-card-o text-muted"></i>
+		</div>
+	</div>
+	
+	<div class="form-group has-feedback has-feedback-left">
+		<input type="text" class="form-control" placeholder="Masukan PIN KRS" id="pin_krs" name="pin_krs" required="required">
+		<div class="form-control-feedback">
+			<i class="fa fa-id-card text-muted"></i>
+		</div>
+	</div>
+	<div class="content-divider text-muted form-group"><span>Akun</span></div>
+	<div class="form-group has-feedback has-feedback-left">
+		<input type="tel" class="form-control"  placeholder="Masukan No. Hp/Tlp" id="no_tlp_mahasiswa" name="no_tlp_mahasiswa" required="required">
+		<div class="form-control-feedback">
+			<span class="text-muted fa fa-phone"></span>
+		</div>
+	</div>
+	<div class="form-group has-feedback has-feedback-left">
+		<input type="password" class="form-control form-password" placeholder="Masukan Kata Sandi" name="password" id="password" required="required">
+		<div class="form-control-feedback">
+			<i class="fa fa-lock text-muted"></i>
+		</div>
+	</div>
+	<div class="content-divider text-muted form-group"><span>Upload Persyaratan</span></div>
+	<div class="form-group row">
+		<div class="col-md-12">
+			<div class="input-group">
+				<span class="input-group-btn">
+					<span class="btn btn-default btn-sm btn-file">
+						<i class="fa fa-folder-open"></i> Unggah File<input type="file" name="" id="uploadPDF" accept=".pdf" />
+					</span>
+				</span>
+				<input type="text" class="form-control input-sm" required readonly><a href="#cekfile" data-toggle="modal" type="button" class="input-group-addon" onclick="PreviewPDF();" id="basic-addon2"><i class="fa fa-search-plus"></i></a>
+			</div>
+		</div>
+	</div>
+	<div class="content-divider text-muted form-group"><span>Captcha</span></div>
+	<div class="form-group row">
+		<div class="col-sm-12">
+			<div class="g-recaptcha" data-sitekey="<?php echo $site_key; ?>"></div>
+			<input type="hidden" class="hiddenCaptcha required" name="hiddenCaptcha" id="hiddenCaptcha">
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<button type="submit" name="simpan_tahan" class="btn bg-teal btn-block btn-lg">Daftar</button>
+	</div>
+
+	<div class="content-divider text-muted form-group"><span>Sudah terdaftar menjadi peserta KKN ?</span></div>
+	<a href="?page=masuk" class="btn btn-default btn-block content-group">Masuk</a>
+	</form>
+	</div>
+	<div class="tab-pane fade <?=((isset($_SESSION['tahan']))?'in active':'');?>">
+		<div class="content-divider text-muted form-group"><span>Profil</span></div>
+		<div class="form-group has-feedback has-feedback-left">
+			<input disabled type="text" class="form-control" placeholder="Masukan NIM" name="nim" value="<?=$nim;?>" required="required">
+			<div class="form-control-feedback">
+				<i class="fa fa-id-card text-muted"></i>
+			</div>
+		</div>
+		<div class="form-group has-feedback has-feedback-left">
+			<input disabled type="text" class="form-control" placeholder="Masukan NIM" name="nama" value="<?=$nim;?>" required="required">
+			<div class="form-control-feedback">
+				<i class="fa fa-id-card text-muted"></i>
+			</div>
+		</div>
+	</div>
+	</div>
+</div>
+
+<!-- /form with validation -->

@@ -1,0 +1,272 @@
+<?php
+
+	if(isset($_GET['kelompok'])){
+		
+		$id_kelompok   = $_GET['kelompok'];
+		$r_tkelompok   = mysqli_fetch_array(mysqli_query($dbconnect,"SELECT * FROM tbl_kelompok WHERE id_kelompok='$id_kelompok'"));
+		
+		$r_thaspeserta = mysqli_fetch_array(mysqli_query($dbconnect,"SELECT * FROM tbl_has_peserta WHERE id_kelompok='$r_tkelompok[id_kelompok]'"));
+										
+		$r_tpeserta	   = mysqli_fetch_array(mysqli_query($dbconnect,"SELECT * FROM tbl_peserta WHERE id_peserta='$r_thaspeserta[id_peserta]' AND status_peserta='sudah'"));
+		
+		$r_tmahasiswa  = mysqli_fetch_array(mysqli_query($dbconnect,"SELECT * FROM tbl_mahasiswa WHERE id_mahasiswa='$r_tpeserta[id_mahasiswa]'"));
+		
+		$r_tdpl1	   = mysqli_fetch_array(mysqli_query($dbconnect,"SELECT * FROM tbl_dpl WHERE id_dpl='$r_tkelompok[id_dpl_1]'"));
+		
+		$r_tdosen1	   = mysqli_fetch_array(mysqli_query($dbconnect,"SELECT * FROM tbl_dosen WHERE id_dosen='$r_tdpl1[id_dosen]'"));	
+		
+		$r_tdpl2	   = mysqli_fetch_array(mysqli_query($dbconnect,"SELECT * FROM tbl_dpl WHERE id_dpl='$r_tkelompok[id_dpl_2]'"));
+		
+		$r_tdosen2	   = mysqli_fetch_array(mysqli_query($dbconnect,"SELECT * FROM tbl_dosen WHERE id_dosen='$r_tdpl2[id_dosen]'"));
+		
+		$q_banggota    = mysqli_query($dbconnect,"SELECT * FROM tbl_has_peserta WHERE id_kelompok='$id_kelompok' AND status_has_peserta='anggota'");
+		
+		$q_bketua	   = mysqli_query($dbconnect,"SELECT * FROM tbl_has_peserta WHERE id_kelompok='$id_kelompok' AND status_has_peserta='ketua'");
+		$cek_ketua     = mysqli_num_rows($q_bketua);
+		$r_bketua	   = mysqli_fetch_array($q_bketua);
+		
+		$r_bpeserta	   = mysqli_fetch_array(mysqli_query($dbconnect,"SELECT * FROM tbl_peserta WHERE id_peserta='$r_bketua[id_peserta]' AND status_peserta='sudah'"));
+		
+		$r_bmahasiswa  = mysqli_fetch_array(mysqli_query($dbconnect,"SELECT * FROM tbl_mahasiswa WHERE id_mahasiswa='$r_tpeserta[id_mahasiswa]'"));
+		
+		$r_bprodi      = mysqli_fetch_array(mysqli_query($dbconnect,"SELECT * FROM tbl_prodi WHERE id_prodi='$r_bmahasiswa[id_prodi]'"));
+		
+		$r_tlokasi	   = mysqli_fetch_array(mysqli_query($dbconnect,"SELECT * FROM tbl_lokasi WHERE id_lokasi='$r_tkelompok[id_lokasi]'"));
+		
+		$r_tprov = mysqli_fetch_array(mysqli_query($dbconnect,"SELECT * FROM tbl_provinsi WHERE id_prov='$r_tlokasi[id_provinsi]'"));
+								
+		$r_tkota = mysqli_fetch_array(mysqli_query($dbconnect,"SELECT * FROM tbl_kabupaten WHERE id_kab='$r_tlokasi[id_kota]'"));
+		
+		$r_tkec  = mysqli_fetch_array(mysqli_query($dbconnect,"SELECT * FROM tbl_kecamatan WHERE id_kec='$r_tlokasi[id_kecamatan]'"));
+		
+		$r_tkel   = mysqli_fetch_array(mysqli_query($dbconnect,"SELECT * FROM tbl_kelurahan WHERE id_kel='$r_tlokasi[id_kelurahan]'"));
+		
+		$r_tmitra = mysqli_fetch_array(mysqli_query($dbconnect,"SELECT * FROM tbl_mitra WHERE id_lokasi='$r_tlokasi[id_lokasi]'"));
+
+	}
+	
+		include '../../setting/action/aksi_map.php';
+?>
+<div class="navbar navbar-default navbar-component navbar-xs">
+	<ul class="nav navbar-nav visible-xs-block">
+		<li class="full-width text-center"><a data-toggle="collapse" data-target="#navbar-filter"><i class="fa fa-bars"></i></a></li>
+	</ul>
+
+	<div class="navbar-collapse collapse" id="navbar-filter">
+		<div class="navbar-right">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="#"><i class="fa fa-check-square-o"></i> Kelompok <?=$r_tkelompok['nama_kelompok']?></a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<!-- /toolbar -->
+<div class="row">
+	<div class="col-sm-12">
+		<div class="row">
+			<div class="tab-content" id="myTabContent">
+				<div class="tab-pane fade in active" id="tab1">
+					<div class="col-sm-3">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="thumbnail">
+									<div class="thumb thumb-rounded thumb-slide" >
+										<img src="../../setting/save/dosen/<?=cek_foto($r_tdosen1['foto_dosen'])?>" class="picture-pass" id='img-upload'/>
+									</div>
+								
+									<div class="caption text-center">
+										<div class="form-group row">
+											<div class="col-md-12">
+											<div class="content-divider text-muted form-group"><span>DPL 1 <span class="text-semibold">Kelompok <?=$r_tkelompok['nama_kelompok']?></span></span></div>
+											<h6 class="text-semibold no-margin" style="font-size:13px;"><?=strtoupper(cek_jk($r_tdosen1['jk_dosen'])." ".$r_tdosen1['nama_dosen'])?> <small class="display-block">NIDN. <?=$r_tdosen1['nidn']?></small></h6>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="thumbnail">
+									<div class="thumb thumb-rounded thumb-slide" >
+										<img src="../../setting/save/dosen/<?=cek_foto($r_tdosen2['foto_dosen'])?>" class="picture-pass" id='img-upload'/>
+									</div>
+								
+									<div class="caption text-center">
+										<div class="form-group row">
+											<div class="col-md-12">
+											<div class="content-divider text-muted form-group"><span>DPL 2 <span class="text-semibold">Kelompok <?=$r_tkelompok['nama_kelompok']?></span></span></div>
+											<h6 class="text-semibold no-margin" style="font-size:13px;"><?=strtoupper(cek_jk($r_tdosen2['jk_dosen'])." ".$r_tdosen2['nama_dosen'])?> <small class="display-block">NIDN. <?=$r_tdosen2['nidn']?></small></h6>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-9">
+					<div class="row">
+					<div class="col-sm-12">
+						<div class="panel panel-white">
+							<div class="panel-heading">
+							<h6 class="panel-title">Info Anggota Kelompok <?=$r_tkelompok['nama_kelompok']?></h6>
+							</div>
+							<div class="panel-body">
+							<div class="table-info">
+								<table class="table table-striped table-bordered table-hover datatable-show-all">
+									<thead>
+										<tr>
+											<th>#</th>
+											<th>Foto Peserta</th>
+											<th>Status Peserta</th>
+											<th>NIM</th>
+											<th>Nama Peserta</th>
+											<th>Jenis Kelamin</th>
+											<th>Program Studi</th>
+											<th align="center">Aksi</th>
+										</tr>
+									</thead>
+									
+									<tbody>
+									<?php
+										if($cek_ketua!==0){									
+									?>
+										<tr>
+											<td>1</td>
+											<td><center><img src="../../setting/save/mahasiswa/<?=cek_foto($r_bmahasiswa['foto_mahasiswa']);?>" class="resident-picture"></center></td>
+											<td><b><?=ucwords($r_bketua['status_has_peserta'])?></b> Kelompok</td>
+											<td><?=$r_bmahasiswa['nim']?></td>
+											<td><?=ucwords($r_bmahasiswa['nama_mahasiswa'])?></td>
+											<td><?=ucwords(jk($r_bmahasiswa['jk_mahasiswa']))?></td>
+											<td><?=ucwords($r_bprodi['nama_prodi'])?></td>
+											<td><center>								
+												<!--<button type="button" class="label label-danger" onclick="datadele(<?=$r_thaspeserta['id_has_peserta'];?>,&#39;anggota&#39;,<?=$id_kelompok;?>)" data-original-title='Hapus' data-toggle='modal' data-target='#myModal2'><i class="fa fa-trash"></i></button>-->
+											</center></td>
+										</tr>
+									<?php 
+										} 
+										if(($cek_ketua!==0) || ($cek_ketua==0)) {
+											$no=2;
+										}
+										if($cek_ketua==0) {
+											$no=1;
+										}
+										while($r_banggota = mysqli_fetch_array($q_banggota)){
+											
+										$r_gpeserta	   = mysqli_fetch_array(mysqli_query($dbconnect,"SELECT * FROM tbl_peserta WHERE id_peserta='$r_banggota[id_peserta]' AND status_peserta='sudah'"));
+	
+										$r_gmahasiswa  = mysqli_fetch_array(mysqli_query($dbconnect,"SELECT * FROM tbl_mahasiswa WHERE id_mahasiswa='$r_gpeserta[id_mahasiswa]'"));
+										
+										$r_bgprodi      = mysqli_fetch_array(mysqli_query($dbconnect,"SELECT * FROM tbl_prodi WHERE id_prodi='$r_gmahasiswa[id_prodi]'"));
+									?>
+										<tr>
+											<td><?=$no++;?></td>
+											<td><center><img src="../../setting/save/mahasiswa/<?=cek_foto($r_gmahasiswa['foto_mahasiswa']);?>" class="resident-picture"></center></td>
+											<td><b><?=ucwords($r_banggota['status_has_peserta'])?></b> Kelompok</td>
+											<td><?=$r_gmahasiswa['nim']?></td>
+											<td><?=ucwords($r_gmahasiswa['nama_mahasiswa'])?></td>
+											<td><?=ucwords(jk($r_gmahasiswa['jk_mahasiswa']))?></td>
+											<td><?=ucwords($r_bgprodi['nama_prodi'])?></td>
+											<td><center>
+												<!--<button type="button" class="label label-danger" onclick="datadele(<?=$r_banggota['id_has_peserta'];?>,&#39;anggota&#39;,<?=$id_kelompok;?>)" data-original-title='Hapus' data-toggle='modal' data-target='#myModal2'><i class="fa fa-trash"></i></button>-->
+											</center></td>
+										</tr>
+									<?php } ?>
+									</tbody>
+								</table>
+							</div>			
+							</div>			
+						</div>		
+					</div>
+					<div class="col-sm-12">
+						<div class="panel panel-white">
+							<div class="panel-heading">
+							<h6 class="panel-title">Info Pembimbing Lapangan Kelompok <?=$r_tkelompok['nama_kelompok']?></h6>
+							</div>
+							<div class="table-responsive">
+								<table class="table table-noborder table-striped">
+									<tr>
+										<th><b>DOSEN PEMBIMBING LAPANGAN 1</b></th>
+										<td colspan="6"></td>
+									</tr>
+									<tr>
+										<th>NIDN</th>
+										<th><center>:</center></th>
+										<td><?=$r_tdosen1['nidn']?></td>
+										<td colspan="4"></td>
+									</tr>
+									<tr>
+										<th>Nama Lengkap DPL 1</th>
+										<th><center>:</center></th>
+										<td><?=strtoupper(cek_jk($r_tdosen1['jk_dosen'])." ".$r_tdosen1['nama_dosen'])?></td>
+										<td colspan="4"></td>
+									</tr>
+									<tr>
+										<th>No. Tlp/Hp</th>
+										<th><center>:</center></th>
+										<td style="border-right:1px solid #ddd;"><?=$r_tdosen1['no_tlp_dosen']?></td>
+										<th>Email</th>
+										<th><center>:</center></th>
+										<td><?=strtoupper($r_tdosen1['email_dosen'])?></td>
+									</tr>
+									<tr>
+										<th><b>DOSEN PEMBIMBING LAPANGAN 2</b></th>
+										<td colspan="6"></td>
+									</tr>
+									<tr>
+										<th>NIDN</th>
+										<th><center>:</center></th>
+										<td><?=$r_tdosen2['nidn']?></td>
+										<td colspan="4"></td>
+									</tr>
+									<tr>
+										<th>Nama Lengkap DPL 2</th>
+										<th><center>:</center></th>
+										<td><?=strtoupper(cek_jk($r_tdosen2['jk_dosen'])." ".$r_tdosen2['nama_dosen'])?></td>
+										<td colspan="4"></td>
+									</tr>
+									<tr>
+										<th>No. Tlp/Hp</th>
+										<th><center>:</center></th>
+										<td style="border-right:1px solid #ddd;"><?=$r_tdosen2['no_tlp_dosen']?></td>
+										<th>Email</th>
+										<th><center>:</center></th>
+										<td><?=strtoupper($r_tdosen2['email_dosen'])?></td>
+									</tr>
+									<tr>
+										<th><b>MITRA LAPANGAN</b></th>
+										<td colspan="6"></td>
+									</tr>
+									<tr>
+										<th>Nama Mitra</th>
+										<th><center>:</center></th>
+										<td><?=strtoupper(cek_jk($r_tmitra['jk_mitra'])." ".$r_tmitra['nama_mitra'])?></td>
+										<td colspan="4"></td>
+									</tr>
+									<tr>
+										<th>No. Tlp/Hp</th>
+										<th><center>:</center></th>
+										<td><?=strtoupper($r_tmitra['no_tlp_mitra'])?></td>
+										<td colspan="4"></td>
+									</tr>
+								</table>	
+							</div>	
+							<div class="panel-heading">
+							<h6 class="panel-title">Info Lokasi KKN Kelompok <?=$r_tkelompok['nama_kelompok']?></h6>
+							</div>
+							<div class="table-responsive">
+								<table class="table table-noborder table-striped">
+									<tr>
+										<th><b>PROV. <?=strtoupper($r_tprov['nama'])?> - <?=strtoupper($r_tkota['nama'])?> - KEC. <?=strtoupper($r_tkec['nama'])?> - KEL. <?=strtoupper($r_tkel['nama'])?></b></th>
+										<th colspan="6"></th>
+									</tr>
+								</table>
+							</div>	
+							<div id="map-canvas" style="width:100%; height:300px;"></div>
+						</div>		
+					</div>
+					</div>
+					</div>
+				</div>	
+			</div>
+		</div>
+	</div>
+</div>
